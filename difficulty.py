@@ -140,7 +140,7 @@ def show_required_global_hashrate_by_diff():
     print "--------------------------------------------------------\n\n"
 
 
-def simulate_for_n(starting_diff, n, global_hashrate, node_cap):
+def simulate_for_n(starting_diff, n, global_hashrate, node_cap, deviation=100):
     """Simulate the difficulty for n epochs with given starting difficulty, global hashrate, and the
     maximum number of nodes run.
 
@@ -149,7 +149,8 @@ def simulate_for_n(starting_diff, n, global_hashrate, node_cap):
         n (int): the number of iterations to simulate.
         global_hashrate (int): the hashrate (H/s) to simulate.
     """
-    simulator = DifficultySimulator(global_hashrate, starting_diff, node_cap=node_cap)
+    simulator = DifficultySimulator(global_hashrate, starting_diff, node_cap=node_cap,
+            deviation=deviation)
     print("Simulating for %d epochs:" % n)
     print("Starting Difficulty: %d" % starting_diff)
     print("Global Hashrate: %s/s" % simulator.abbrev_hashrate(global_hashrate))
@@ -172,6 +173,18 @@ def main():
     # Simulate the difficulty adjustment diff=40, n=50, hashrate=15 Th/s, node_cap=2100
     # Approximately in between difficulty 40 and 41.
     simulate_for_n(40, 50, 15 * 1000000000000.0, 2100)
+
+    # Simulate the difficulty adjustment diff=40, n=50, hashrate=15 Th/s, node_cap=2100 with a
+    # higher deviation
+    simulate_for_n(40, 50, 15 * 1000000000000.0, 2100, 200)
+
+    # Simulate the difficulty adjustment diff=40, n=50, hashrate=15 Th/s, node_cap=4000 with a
+    # higher deviation and higher max node cap
+    simulate_for_n(40, 50, 15 * 1000000000000.0, 4000, 200)
+
+    # Simulate the difficulty adjustment diff=40, n=50, hashrate=15 Th/s, node_cap=2100 with a
+    # higher deviation and higher max node cap and a large hashrate.
+    simulate_for_n(40, 50, 50 * 1000000000000.0, 4000, 200)
 
 
 if __name__ == '__main__':

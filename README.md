@@ -198,9 +198,9 @@ The effect of this is even more chaotic at higher difficulties.
 
 ### Solutions
 
-A difficulty based on a linear scale would alleviate this issue. Understandably, this is not trivial
-and requires a moderate amount of change to the codebase and possibly the block structures (since
-the difficulty is currently represented as a `uint8_t`.
+A difficulty based on a linear scale or nBits would alleviate this issue. Understandably, this is
+not trivial and requires a moderate amount of change to the codebase and possibly the block
+structures (since the difficulty is currently represented as a `uint8_t`).
 
 From that point onwards, a tested difficulty adjustment algorithm could be selected. For an
 introduction on some of the difficulty algorithms used in privacy coins, the following repository
