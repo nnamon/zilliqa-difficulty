@@ -158,13 +158,20 @@ def simulate_for_n(starting_diff, n, global_hashrate, node_cap):
         iteration = simulator.step()
         print("n=%02d  solutions=%d  difficulty=%d  adjustment=%d" % iteration)
 
+    print "--------------------------------------------------------\n\n"
+
 
 def main():
     # Display the minimum required global hashrate to maintain a difficulty.
     show_required_global_hashrate_by_diff()
 
-    # Simulate the difficulty adjustment diff=32, n=10, hashrate=150 Gh/s, node_cap=2000
+    # Simulate the difficulty adjustment diff=32, n=50, hashrate=58 Gh/s, node_cap=2100
+    # Approximately in between difficulty 32 and 33.
     simulate_for_n(32, 50, 58 * 1000000000.0, 2100)
+
+    # Simulate the difficulty adjustment diff=40, n=50, hashrate=15 Th/s, node_cap=2100
+    # Approximately in between difficulty 40 and 41.
+    simulate_for_n(40, 50, 15 * 1000000000000.0, 2100)
 
 
 if __name__ == '__main__':
