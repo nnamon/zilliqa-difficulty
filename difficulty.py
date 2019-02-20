@@ -4,7 +4,7 @@
 class DifficultySimulator:
 
     def __init__(self, global_hashrate, starting_diff, deviation=100, target=1810, guards=1200,
-            pow_window=60, node_cap=None):
+            pow_window=60, node_cap=None, diff_algorithm=None):
         """Create the DifficultySimulator object.
 
         Attributes:
@@ -16,6 +16,7 @@ class DifficultySimulator:
             guards (int): the number of guard nodes.
             pow_window (int): the length of a proof-of-work window.
             node_cap (int): the maximum number of nodes running.
+
             current_n (int): the current iteration number of the simulation.
             current_diff (int): the current difficulty of the simulation.
         """
@@ -28,6 +29,8 @@ class DifficultySimulator:
         self.guards = guards
         self.pow_window = pow_window
         self.node_cap = node_cap
+        self.diff_algorithm = diff_algorithm
+        self.history = []
 
         # State
         self.set_state(0, self.starting_diff)
@@ -112,6 +115,7 @@ class DifficultySimulator:
         self.current_n += 1
 
         result = (self.current_n, expected_solutions, self.current_diff, difficulty_adjustment)
+        self.history.append(result)
         return result
 
 
