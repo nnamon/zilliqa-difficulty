@@ -45,10 +45,8 @@ class DifficultySimulator:
         Returns:
             int: the target boundary to compare the solution to.
         """
-        b = ["1"] * 256
-        for i in range(int(diff)):
-            b[i] = "0"
-        return int("".join(b), 2)
+        result = pow(2, 256)/pow(2, diff)
+        return result
 
 
     def to_hashes(self, diff):
@@ -60,8 +58,7 @@ class DifficultySimulator:
         Returns:
             int: the absolute expected number of hashes required.
         """
-        boundary = self.to_boundary(diff)
-        result = pow(2, 256) / float(boundary)
+        result = pow(2, diff)
         return result
 
 
